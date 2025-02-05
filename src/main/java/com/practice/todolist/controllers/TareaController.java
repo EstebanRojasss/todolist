@@ -8,16 +8,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/tarea")
 public class TareaController {
+
     @Autowired
     private TareaService tareaService;
 
@@ -26,5 +25,11 @@ public class TareaController {
     public ResponseEntity<TareaDTO> crearTarea(@RequestBody TareaDTO tareaDTO){
         tareaService.crearTarea(tareaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(tareaDTO);
+    }
+
+    @GetMapping
+    @Operation(description = "Endpoint encargado de listar las tareas.")
+    public ResponseEntity<List<TareaDTO>> listarTareas(){
+        return ResponseEntity.ok(tareaService.listarTareas());
     }
 }
