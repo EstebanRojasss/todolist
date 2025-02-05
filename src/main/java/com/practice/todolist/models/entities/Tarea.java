@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Tarifa {
+public class Tarea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

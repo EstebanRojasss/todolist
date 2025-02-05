@@ -1,9 +1,7 @@
 package com.practice.todolist.models.dto;
 
-import lombok.Getter;
 
-
-public record TarifaDTO(
+public record TareaDTO(
                         String nombre,
                         Integer prioridad,
                         Boolean realizado,
