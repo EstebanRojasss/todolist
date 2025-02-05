@@ -48,7 +48,7 @@ public class TareaService {
         return tareasDto;
     }
 
-    public Tarea actualizarTarea(Tarea tareaNueva){
+    public Tarea actualizarTarea(Tarea tareaNueva) {
         log.info("Iniciando proceso de busqueda de la tarea.");
         return tareaRepository.findById(tareaNueva.getId()).stream().
                 map(tareaActual -> {
@@ -59,6 +59,17 @@ public class TareaService {
                     log.info("Éxito en la actualización de la tarea.");
                     return tareaRepository.save(tareaActual);
                 }).findFirst().orElseThrow(() -> new Exception("No se encontró la tarea", HttpStatus.NOT_FOUND));
+    }
+
+    public Optional<Tarea> eliminarTarea(Long id) {
+        log.info("Iniciando proceso de búsqueda de tarea para la eliminación");
+            Optional<Tarea>tareaAEliminar =  tareaRepository.findById(id);
+            if(tareaAEliminar.isEmpty()){
+                throw new Exception("No se encontró la tarea", HttpStatus.NOT_FOUND);
+            }
+            tareaRepository.deleteById(id);
+            log.info("Éxito en la eliminación de la tarea.");
+            return tareaAEliminar;
     }
 
 }
