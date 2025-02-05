@@ -1,8 +1,16 @@
 package com.practice.todolist.exceptions;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.http.HttpStatus;
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Exception extends RuntimeException{
-    public Exception(String message){
+
+    private HttpStatus status;
+    public Exception(String message, HttpStatus status){
         super(message);
+        this.status = status;
     }
 }
 
