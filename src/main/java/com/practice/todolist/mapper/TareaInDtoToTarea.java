@@ -2,7 +2,9 @@ package com.practice.todolist.mapper;
 
 import com.practice.todolist.models.dto.TareaDTO;
 import com.practice.todolist.models.entities.Tarea;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TareaInDtoToTarea implements IMapper<TareaDTO, Tarea>{
 
     @Override
